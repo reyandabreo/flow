@@ -35,6 +35,18 @@ function Dashboard() {
   const [players, setPlayers] = useState([]);
   const [teams, setTeams] = useState({});
 
+  useEffect(() => {
+    const savedPlayers = localStorage.getItem('players');
+    const savedTeams = localStorage.getItem('teams');
+
+    if (savedPlayers) {
+      setPlayers(JSON.parse(savedPlayers));
+    }
+    if (savedTeams) {
+      setTeams(JSON.parse(savedTeams));
+    }
+  }, []);
+
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     Papa.parse(file, {
