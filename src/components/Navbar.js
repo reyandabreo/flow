@@ -6,10 +6,17 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar
+      position="static"
+      color="primary"
+      sx={{
+        backdropFilter: 'blur(10px)', // Apply blur effect
+        backgroundColor: 'rgba(0, 0, 0, 0)', // Semi-transparent background to see the blur effect
+      }}
+    >
       <Toolbar>
         {/* Left Section */}
-        <IconButton edge="start" color="inherit" aria-label="home" sx={{ mr: 2 }}>
+        <IconButton edge="start" color="inherit" aria-label="home" sx={{ mr: 2 }} component={Link} to="/">
           <Home />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -24,7 +31,7 @@ function Navbar() {
           <Button color="inherit" component={Link} to="/player-status" startIcon={<BarChart />}>
             Player Stats
           </Button>
-          <Button color="inherit" component={Link} to="/" startIcon={<Dashboard />}>
+          <Button color="inherit" component={Link} to="/Dashboard" startIcon={<Dashboard />}>
             Dashboard
           </Button>
         </Box>
