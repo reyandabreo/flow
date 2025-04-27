@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+// filepath: /run/media/reyandabreo/Projects/React/flow/src/App.js
+import React from 'react';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './components/Dashboard';
+import PlayerStatus from './components/player-status'; // Import the Player Status page
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/player-status" element={<PlayerStatus />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
