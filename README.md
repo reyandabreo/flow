@@ -1,70 +1,160 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ⚽ Football Player Performance Dashboard
 
-## Available Scripts
+This project **visualizes football player performance data** collected from **IoT sensors** and presents it using **React.js** and **Chart.js** for easy analysis and interpretation.  
+It offers **dynamic player cards** with animated **progress charts** to view key performance metrics.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📋 Table of Contents
+- [About](#about)
+- [Tech Stack](#tech-stack)
+- [Project Flow](#project-flow)
+- [Folder Structure](#folder-structure)
+- [Setup Instructions](#setup-instructions)
+- [Usage](#usage)
+- [Features](#features)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📖 About
 
-### `npm test`
+**Football Player Performance Dashboard** is an interactive web application that fetches player performance data (e.g., goals, assists, shots) and visually displays it using:
+- Dynamic player cards
+- Circular progress indicators
+- Graphs and charts (coming soon)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This allows coaches, analysts, or fans to quickly monitor a player's match or season performance.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend:** React.js (Vite/CRA/Next.js)
+- **Charts:** Chart.js (for advanced graphs)
+- **UI Components:** Material-UI (MUI)
+- **CSV Parsing:** PapaParse
+- **Styling:** Custom Material-UI Theme + Tailwind CSS (optional)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🔥 Project Flow
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Data Collection:**  
+   Sensor devices capture real-time player data like goals, shots, assists, minutes played, etc.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Data Storage:**  
+   Sensor output is exported into a **CSV** file (or could later be connected to a live API).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Data Fetching:**  
+   - React app fetches the **CSV** file from the public folder.
+   - Parses the data using **PapaParse**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Data Processing:**  
+   - Each player’s stats are extracted.
+   - Data like `Goals`, `Assists`, `Shots`, `Shots on Goal`, and `Minutes Played` is parsed into numerical form.
 
-## Learn More
+5. **Data Visualization:**  
+   - Cards are dynamically generated for each player.
+   - Circular progress indicators show each metric proportionally.
+   - Additional graphs (line charts, bar charts) are created using **Chart.js** (future feature).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. **Responsive Design:**  
+   - Layout adjusts automatically across Desktop, Tablet, and Mobile screens.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📂 Folder Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+/football-dashboard
+├── /public
+│   └── data.csv   # CSV file containing player data
+├── /src
+│   ├── /components
+│   │   └── PlayerStatus.jsx  # Main component to render player cards
+│   ├── App.jsx
+│   └── index.js
+├── package.json
+├── README.md
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🏗️ Setup Instructions
 
-### Making a Progressive Web App
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/football-dashboard.git
+cd football-dashboard
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-### Advanced Configuration
+> This will install React, Material-UI, PapaParse, Chart.js, etc.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 3. Add Your Data
+- Place your `data.csv` inside the `/public` folder.
+- Make sure the CSV has headers like: `PLAYER, TEAM, G, ASST, SHOTS, SOG, MIN, AVATAR`.
 
-### Deployment
+Example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| PLAYER     | TEAM       | G | ASST | SHOTS | SOG | MIN | AVATAR        |
+|------------|------------|---|------|-------|-----|-----|---------------|
+| Lionel Messi | PSG    | 30 | 12   | 90    | 60  | 3400| avatarlink.jpg |
 
-### `npm run build` fails to minify
+### 4. Run the Application
+```bash
+npm run dev   # if using Vite
+# OR
+npm start     # if using Create React App
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 🧑‍💻 Usage
+
+Once running:
+
+- Visit [http://localhost:3000](http://localhost:3000).
+- View dynamic cards with player stats.
+- Hover over cards for animation effects.
+- Charts will animate to show current stats.
+
+---
+
+## ✨ Features
+
+- 📈 **Visualize** player goals, assists, shots, minutes.
+- 🏃 **Smooth animations** using MUI and CSS transitions.
+- 📊 **Chart.js graphs** (planned: bar graph of player comparison).
+- 🛠️ **Responsive layout** for all devices.
+- ⚡ **Fast CSV Parsing** (even for large files).
+- 🎨 **Custom Themes** with dark mode style.
+
+---
+
+## 🚀 Future Improvements
+
+- Connect to **live API** for real-time sensor data.
+- Add **line charts** to show player performance over time.
+- Add **team comparison charts**.
+- Implement **filters** (e.g., sort by goals, assists).
+- Build **admin panel** to upload new CSV files dynamically.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+# 🔥 Ready to Score Some Goals with Data! 🚀⚽
+
+
